@@ -31,3 +31,22 @@
 */
 
 // YOUR CODE HERE
+
+function letterCount(word){
+  //get the array containing each letter of the word
+  var wordArray = word.split("")
+  //create a way to count the letters
+  var count = {};
+  //for each item in the array, count it.(??)
+  wordArray.forEach(function countLetters(value){
+      if(!count[value]){
+          count[value] = 1;
+      } else {
+          count[value] +=1;
+      }
+
+  });return(count)
+
+};
+
+console.log(letterCount("apple"))

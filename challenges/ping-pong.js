@@ -11,6 +11,9 @@
   ``` javascript
   var table = [{steps: 0}, null, null, null];
 
+
+  array.length = 4
+
   pingPong(table); //=> [null, {steps: 1}, null, null]
   pingPong(table); //=> [null, null, {steps: 2}, null]
   pingPong(table); //=> [null, null, null, {steps: 3}]
@@ -38,3 +41,46 @@
 */
 
 // YOUR CODE HERE
+//step 1: how do I access where pingpong is hardcoded?
+//step 2: how do I find where pingpong is in the array?
+//step 3: how do I increase the steps for pingpong?
+//step 4: how do I move the pingpong?
+//step 5: how do I establish pingpong direction?
+//step 6: how do I return the result?
+
+var table = [{steps: 0}, 3, 4, 5];
+// var table = [3, {steps: 1}, 4, 3, 3];
+// var table = [3, 4, 3, 3, {steps: 4}];
+// var table = [{steps: 8}, 3, 4, 5, 6]
+
+function pingPong(table){
+  var pingpongIndex = null;
+  //find pingpong and increase steps
+  table.forEach(function findPingPong(value, i){
+//     console.log(typeof value)
+//     console.log(value)
+    if(value && value["steps"]!= undefined){
+      pingpongIndex = i;
+    }
+  });
+  var normalizeSteps = table[pingpongIndex].steps %((table.length-1)*2);
+  table[pingpongIndex].steps +=1;
+  //move the pingpong
+  var pingpong = table[pingpongIndex];
+  console.log("this is normalizeSteps", normalizeSteps, "this is pingpongIndex", pingpongIndex)
+
+  if(normalizeSteps < 3){
+    table.splice(pingpongIndex, 1);
+    table.splice(pingpongIndex+1, 0, pingpong);
+  } else {
+    //splice left
+    table.splice(pingpongIndex,1)
+    table.splice(pingpongIndex-1, 0, pingpong)
+  }
+  console.log("did pingpong move?", table);
+}
+
+pingPong(table)
+
+
+
